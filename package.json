@@ -1,0 +1,19 @@
+{
+  "name": "@onejs-dev/onecomponent",
+  "version": "0.0.1",
+  "description": "Component library created by oneJS, aiming to provide consistency across Web and Native.",
+  "main": "oneComponent.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oneJS-dev/oneComponent.git"
+  },
+  "author": "onejs-dev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oneJS-dev/oneComponent/issues"
+  },
+  "homepage": "https://github.com/oneJS-dev/oneComponent#readme"
+}

@@ -1,5 +1,5 @@
 import {oneIcons} from './oneIcons.js';
-import {matchUrl, Component, BaseComponent, themeVariable} from './oneCore.js';
+import {matchUrl, Component, BaseComponent, themeVariable} from '@onejs-dev/onecore';
 
 
 
