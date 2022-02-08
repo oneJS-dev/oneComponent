@@ -529,7 +529,7 @@ ReactDOM.render(e(TodoApp), document.getElementById("root"));
 //It is meant to be used with one icons.
 //If we want to have the primary color on the icon we need to set the active property to true
 //The best way to set the icon color is by changing the theme, in the documentation we should let know which are the variables being used.
-export const Icon = Component('Icon', ({name = 'Icon', icon = 'iosClose', iconFont = oneIcons, color, custom, circled, size=32, ...attributes}={}) => {
+export const Icon = Component('Icon', false, ({name = 'Icon', icon = 'iosClose', iconFont = oneIcons, color, custom, circled, size=32, ...attributes}={}) => {
     //add circled option. In that case reverse colors
     //TODO: We need to fix that the global (body level) styles are overriding the local ones, because they have the same level of priority.
     // const [greeting, setGreeting] = React.useState('Hello Function Component!');
@@ -653,7 +653,7 @@ export const Modal = ({name='Modal', header, footer, backdrop=true, closeIcon=tr
 
 
 //Multiple views one on top of the other. This container gives flexibility to transition between one another with nice animations
-export const Slider = Component('Slider', ({value = 0, onChange = ()=>{}, bullets = true, direction = 'row', scroll = true, ...attributes}={}) => structure => {
+export const Slider = Component('Slider', true, ({value = 0, onChange = ()=>{}, bullets = true, direction = 'row', scroll = true, ...attributes}={}) => structure => {
     //TIP: The slider can be customized or combined with the tabs element, if we add the href = id + 'Slide' + index. Then we can use the state variable assigned to value to style which tab is selected.
     //Other elements can use the href property to move the slider or the location.hash = newHash method. Setting the state property does not move to the element. Rather move the element to set the state property.
     //Works better setting height and width
