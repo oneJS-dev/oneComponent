@@ -416,12 +416,13 @@ export const Icon = Component('Icon', false, ({name = 'Icon', icon = 'iosClose',
     // let mainStyle = {id: 'main', display: 'block !important', width: size, height: size};
     //Add gradients.
     //Add a simpler way to import icons as svg
+    console.log('primaryColor: ' + flavor.primaryColor)
     let mainStyle = {
         id: 'main' + size, 
         // display: 'block !important', 
         width: size, height: size,
         fill: flavor.primaryColor ?? 'blue', //our change to implement cool gradients for icons
-        background: flavor.backgroundColor ?? 'white',
+        background: flavor.backgroundColor ?? 'none',
         border: flavor.border ?? 'none',
         borderRadius: flavor.radius ?? '0px',
         boxShadow: flavor.shadow ?? 'none',
