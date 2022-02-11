@@ -20,6 +20,7 @@ In order to provide a reusable framework for web and native, the following compo
 export const Text = BaseComponent('Text', true, 'p');
 let inputTypes = ['button', 'checkbox', 'color', 'date', 'datetime-local', 'email', 'file', 'hidden', 'image', 'month', 'number', 'password', 'radio', 'range', 'reset', 'search', 'submit', 'tel', 'text', 'time', 'url', 'week'];
 export const Input = ({options, type, flavor=readFlavor('default'), ...attributes}={}) => {
+    if(flavor) attributes['flavor'] = flavor;
     //Standar input
     if(!type) return input(attributes);
     //Textarea for longer text input
@@ -418,7 +419,7 @@ export const Icon = Component('Icon', false, ({name = 'Icon', icon = 'iosClose',
     //Add a simpler way to import icons as svg
     console.log('primaryColor: ' + flavor.primaryColor)
     let mainStyle = {
-        id: 'main' + size, 
+        // id: 'main' + size, 
         // display: 'block !important', 
         width: size, height: size,
         fill: flavor.primaryColor ?? 'blue', //our change to implement cool gradients for icons
@@ -436,7 +437,7 @@ export const Icon = Component('Icon', false, ({name = 'Icon', icon = 'iosClose',
     }
     if(circled) {
         mainStyle = {...mainStyle, ...{
-            id: 'circled' + size,
+            // id: 'circled' + size,
             backgroundColor: flavor.primaryColor ?? 'blue',
             fill: flavor.backgroundColor ?? 'white',
             padding: padding,
@@ -474,7 +475,7 @@ export const Icon = Component('Icon', false, ({name = 'Icon', icon = 'iosClose',
     // console.log('Icon!')
     // console.log(attributes['style'])
     // console.log({name: 'Icon', style: mainStyle, dangerouslySetInnerHTML:{__html: selectedIcon}, ...attributes})
-    return View({name: 'Icon', style: mainStyle, dangerouslySetInnerHTML:{__html: selectedIcon}, ...attributes})();
+    return View({name: 'Icon', style: mainStyle, flavor: flavor, dangerouslySetInnerHTML:{__html: selectedIcon}, ...attributes})();
     // return View({name: 'Icon', style: mainStyle, dangerouslySetInnerHTML:{__html: selectedIcon}, ...attributes})();
 
     //return component('Icon', attributes, {style: mainStyle})(unsafeHTML(icon));
@@ -512,7 +513,7 @@ export const Modal = ({name='Modal', flavor=readFlavor('default'), header, foote
     }
     let backdropStyle = {id: 'backdrop', zIndex: 500, position: 'fixed', top: 0, left: 0, height: '100vh', width: '100vw', background: 'rgba(0,0,0,0.5)'};
     console.log('visible' + attributes['visible']);
-    return View({visible: false, style: {width: size, height: size}, ...attributes})([
+    return View({visible: false, flavor: flavor, style: {width: size, height: size}, ...attributes})([
         View({id: 'backdrop', style: backdropStyle, content: 'center-center', visible: backdrop, onClick: (e) => {e.target.value = false; onClose(e);}})(),//The quick workaround would be to modify the state variable based on the id.
         View({id: 'content', content: 'space-center column', style: contentStyle, onClick: (e)=>{console.log(e)}})([
             Icon({id: 'close', name: 'iosCloseCircleOutline', onClick: (e) => {e.target.value = true; onClose(e);}}),
@@ -589,7 +590,7 @@ export const Slider = Component('Slider', true, ({value = 0, onChange = ()=>{}, 
     
     // console.log('direction: ' + direction)
     // return View({name: name, expand: 1, style: mainStyle, ...attributes})('cuchufrito');
-    return View({name: name, expand: 1, style: mainStyle, ...attributes})([
+    return View({name: name, flavor: flavor, expand: 1, style: mainStyle, ...attributes})([
         View({style: containerStyle, content: direction, class: 'sliderContainer'})(structure.map((view, index) => View({onCreate: visibleEvent(index), key: id + 'Slide' + index, id: id + 'Slide' + index, style: contentStyle})(view))), 
         bullets ? View({content: 'center-center', id: 'bullets', inlineStyle: {position: 'absolute', bottom: 0, width: '100%', zIndex: 3}})(structure.map((view, index) => A({key: index, selected: index === value ? true : false, href: '#' + id + 'Slide' + index})(index))) : '',
          // html`<a ?selected=${ifDefined(index === value ? true : false)} href=${'#' + id + 'Slide' + index}>${index}</a>`)) : '',
